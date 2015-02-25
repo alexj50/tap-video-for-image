@@ -5,29 +5,56 @@
 //  Created by Jacobson on 2/23/15.
 //  Copyright (c) 2015 Alex Jacobson. All rights reserved.
 //
+//  Software written for the expressed purpose of evaluating
+//  Alex Jacobson's software programing skills.
+//
+//  Any commercial use of this software without the expressed written
+//  concent of Alex Jacobson is strictly forbidden
+
+#define FONT(s) [UIFont fontWithName:@"BrushHandNew" size:s]
 
 #import "GalleryCollectionView.h"
-#import "CollectionViewCell.h"
+#import "ReviewCollectionCell.h"
 
-@interface GalleryCollectionView ()<UICollectionViewDataSource,UICollectionViewDelegate>
-
+@interface GalleryCollectionView ()<UICollectionViewDataSource,UICollectionViewDelegate,UIGestureRecognizerDelegate>
+@property (weak, nonatomic) IBOutlet UICollectionView *collection;
+@property (strong, nonatomic) IBOutlet UIButton *homeButton;
+@property (strong,nonatomic) UIImageView *bigImage;
 @end
 
 @implementation GalleryCollectionView
-@synthesize imageArray;
+
+@synthesize imageArray,bigImage,homeButton,collection;
+
 static NSString *const reuseIdentifier = @"image";
 static int screenHeight = 0, screenWidth = 0;
-
+static bool loadInstructions = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSUserDefaults *defults = [NSUserDefaults standardUserDefaults];
+    NSInteger count = [defults integerForKey:@"loadCount"];
+    if (count < 2) {
+        count++;
+        [defults setInteger:count forKey:@"loadCount"];
+        loadInstructions = YES;
+        [defults synchronize];
+    }
     
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) // hides status bar
         [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
     else
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     
-    screenHeight = [[UIScreen mainScreen] bounds].size.height;                  // sets screen height
-    screenWidth  = [[UIScreen mainScreen] bounds].size.width;                   // sets screen width
+    screenHeight             = [[UIScreen mainScreen] bounds].size.height;      // sets screen height
+    screenWidth              = [[UIScreen mainScreen] bounds].size.width;       // sets screen width
+    bigImage                 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    bigImage.contentMode     = UIViewContentModeScaleAspectFit;
+    bigImage.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:bigImage];
+    
+    homeButton.titleLabel.font = FONT(26);
+    
     [self.collection reloadData];
 }
 
@@ -39,19 +66,58 @@ static int screenHeight = 0, screenWidth = 0;
     [super didReceiveMemoryWarning];
 }
 
+-(void)longPressHandler : (UILongPressGestureRecognizer*) gesture {
+    ReviewCollectionCell *cell = (ReviewCollectionCell *)gesture.view;
+    CGRect cellFrame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y + collection.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
+    cell.pressDiscription.alpha = 0;
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        [UIView animateWithDuration:0.2 animations:^(){
+            bigImage.frame = cellFrame;
+        }completion:^(BOOL finished){
+            if (finished) {
+                bigImage.frame = CGRectMake(0, 0, 0, 0);
+            }
+        }];
+    }else
+    if (gesture.state == UIGestureRecognizerStateBegan){
+        bigImage.frame = cellFrame;
+        bigImage.image = cell.cellImage.image;
+        [UIView animateWithDuration:0.2 animations:^(){
+            bigImage.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+        }];
+    }
+}
+
+
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {// only one section
     return 1;
 }
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return imageArray.count;                                                    // images to be displayed caount
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    UIImage *image           = [imageArray objectAtIndex:indexPath.row];        // cell builder
-    cell.cellImage.image     = image;
+    ReviewCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    UIImage *image             = [imageArray objectAtIndex:indexPath.row];        // cell builder
+    cell.cellImage.image       = image;
+    
+    UILongPressGestureRecognizer *longpressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressHandler:)];
+    longpressGesture.minimumPressDuration = 0.1;
+    [longpressGesture setDelegate:self];
+    [cell addGestureRecognizer:longpressGesture];
+    
+    cell.pressDiscription.font = FONT(20);
+    
+    if (loadInstructions) {
+        [UIView animateWithDuration:1.0 delay:2 options:UIViewAnimationOptionTransitionNone animations:^(){
+            cell.pressDiscription.alpha = 0.0;
+        }completion:^(BOOL finished){}];
+    }else 
+        cell.pressDiscription.alpha = 0.0;
+    
     return cell;
 }
 
@@ -65,7 +131,7 @@ static int screenHeight = 0, screenWidth = 0;
     else if ((int)image.size.width > (int)image.size.height)
         cellWidth = screenWidth;
     else
-        cellWidth = (screenWidth/3) - 30;
+        cellWidth = (screenWidth/2) - 20;
 
     float aspectRatio = image.size.height / image.size .width;
     float cellHeight  = cellWidth * (aspectRatio);

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D92E0CFA1A9E44E900EA617B /* BrushHandNew.otf in Resources */ = {isa = PBXBuildFile; fileRef = D92E0CF91A9E44E900EA617B /* BrushHandNew.otf */; };
+		D92E0D001A9E4C2000EA617B /* CustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D92E0CFF1A9E4C2000EA617B /* CustomSegue.m */; };
+		D95A62F91A9E24CE004567EE /* Story Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = D95A62F81A9E24BD004567EE /* Story Book.otf */; };
+		D95A62FC1A9E29F5004567EE /* ReviewCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95A62FB1A9E29F5004567EE /* ReviewCollectionCell.m */; };
 		D97FEFB71A9D9E36006A1801 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFB61A9D9E36006A1801 /* main.m */; };
 		D97FEFBA1A9D9E36006A1801 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFB91A9D9E36006A1801 /* AppDelegate.m */; };
 		D97FEFBD1A9D9E36006A1801 /* Tap_Video_For_Picture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFBB1A9D9E36006A1801 /* Tap_Video_For_Picture.xcdatamodeld */; };
@@ -31,6 +35,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D92E0CF91A9E44E900EA617B /* BrushHandNew.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BrushHandNew.otf; sourceTree = "<group>"; };
+		D92E0CFE1A9E4C2000EA617B /* CustomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegue.h; sourceTree = "<group>"; };
+		D92E0CFF1A9E4C2000EA617B /* CustomSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSegue.m; sourceTree = "<group>"; };
+		D95A62F81A9E24BD004567EE /* Story Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Story Book.otf"; sourceTree = "<group>"; };
+		D95A62FA1A9E29F5004567EE /* ReviewCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewCollectionCell.h; sourceTree = "<group>"; };
+		D95A62FB1A9E29F5004567EE /* ReviewCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewCollectionCell.m; sourceTree = "<group>"; };
 		D97FEFB11A9D9E36006A1801 /* Tap Video For Picture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tap Video For Picture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D97FEFB51A9D9E36006A1801 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D97FEFB61A9D9E36006A1801 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -92,8 +102,12 @@
 		D97FEFB31A9D9E36006A1801 /* Tap Video For Picture */ = {
 			isa = PBXGroup;
 			children = (
+				D92E0CFE1A9E4C2000EA617B /* CustomSegue.h */,
+				D92E0CFF1A9E4C2000EA617B /* CustomSegue.m */,
 				D97FEFDD1A9D9E5C006A1801 /* GalleryCollectionView.h */,
 				D97FEFDE1A9D9E5C006A1801 /* GalleryCollectionView.m */,
+				D95A62FA1A9E29F5004567EE /* ReviewCollectionCell.h */,
+				D95A62FB1A9E29F5004567EE /* ReviewCollectionCell.m */,
 				D97FEFDF1A9D9E5C006A1801 /* CollectionViewCell.h */,
 				D97FEFE01A9D9E5C006A1801 /* CollectionViewCell.m */,
 				D97FEFE11A9D9E5C006A1801 /* HomeViewController.h */,
@@ -114,6 +128,8 @@
 		D97FEFB41A9D9E36006A1801 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D92E0CF91A9E44E900EA617B /* BrushHandNew.otf */,
+				D95A62F81A9E24BD004567EE /* Story Book.otf */,
 				D97FEFB51A9D9E36006A1801 /* Info.plist */,
 				D97FEFB61A9D9E36006A1801 /* main.m */,
 			);
@@ -217,6 +233,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D95A62F91A9E24CE004567EE /* Story Book.otf in Resources */,
+				D92E0CFA1A9E44E900EA617B /* BrushHandNew.otf in Resources */,
 				D97FEFEA1A9D9E88006A1801 /* Main.storyboard in Resources */,
 				D97FEFC81A9D9E36006A1801 /* LaunchScreen.xib in Resources */,
 				D97FEFC51A9D9E36006A1801 /* Images.xcassets in Resources */,
@@ -244,6 +262,8 @@
 				D97FEFB71A9D9E36006A1801 /* main.m in Sources */,
 				D97FEFE51A9D9E5C006A1801 /* HomeViewController.m in Sources */,
 				D97FEFE81A9D9E64006A1801 /* VideoClass.m in Sources */,
+				D95A62FC1A9E29F5004567EE /* ReviewCollectionCell.m in Sources */,
+				D92E0D001A9E4C2000EA617B /* CustomSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,6 +5,14 @@
 //  Created by Jacobson on 2/23/15.
 //  Copyright (c) 2015 Alex Jacobson. All rights reserved.
 //
+//  Software written for the expressed purpose of evaluating
+//  Alex Jacobson's software programing skills.
+//
+//  Any commercial use of this software without the expressed written
+//  concent of Alex Jacobson is strictly forbidden
+
+#define FONT(s) [UIFont fontWithName:@"BrushHandNew" size:s]
+#define WATERMARKFONT(s) [UIFont fontWithName:@"Story Book" size:s]
 
 #import "HomeViewController.h"
 #import <MobileCoreServices/UTCoreTypes.h>
@@ -21,7 +29,9 @@
 @property (strong, nonatomic) IBOutlet UIView *tapView;
 @property (strong, nonatomic) IBOutlet UICollectionView *galleryCollection;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *collectionBottomConstraint;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *progressWidthCons;
+@property (strong, nonatomic) IBOutlet UIView *progressContainer;
+@property (strong, nonatomic) IBOutlet UIButton *nextButton;
+@property (strong, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) MPMoviePlayerController *mc;
 @property (strong, nonatomic) NSMutableArray *imageArray,*allVideos;
 @property (strong, nonatomic) NSIndexPath *oldIndexPath,*currentIndexPath;
@@ -29,12 +39,14 @@
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndcator;
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) UILabel *loadingLabel;
+@property (strong, nonatomic) UIView *progressBar;
+
 @property float totalTime;
 @property CGSize movieDimensions;
 @end
 
 @implementation HomeViewController
-@synthesize mc,tapView,imageArray,videoView,totalTime,movieDimensions,galleryCollection,allVideos,oldIndexPath,collectionBottomConstraint,submitButton,currentIndexPath,activityIndcator,loadingLabel,timer,progressWidthCons;
+@synthesize mc,tapView,imageArray,videoView,totalTime,movieDimensions,galleryCollection,allVideos,oldIndexPath,collectionBottomConstraint,submitButton,currentIndexPath,activityIndcator,loadingLabel,timer,progressBar,progressContainer,nextButton,backButton;
 
 static bool stopped = NO,started = NO,progressStop = NO,videoActive = NO;
 static NSString *const reuseIdentifier = @"home";
@@ -56,21 +68,23 @@ static int screenWidth = 0, screenHeight = 0;
     return YES;
 }
 
--(void) loadViewsInit {                                                         // loads all custom made views and tap recognizer
+-(void) loadViewsInit {                                                         // loads all custom made views and tap recognize
     activityIndcator = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((screenWidth/2) - 10,(screenHeight/2) - 10,20,20)];
     activityIndcator.hidesWhenStopped = YES;
     [self.view addSubview:activityIndcator];
     
-    loadingLabel               = [[UILabel alloc] initWithFrame:CGRectMake(0,(screenHeight/2) - 60,screenWidth,40)];
+    loadingLabel               = [[UILabel alloc] initWithFrame:CGRectMake(0,(screenHeight/2) - 70,screenWidth,50)];
     loadingLabel.textAlignment = NSTextAlignmentCenter;                         // loading label
+    loadingLabel.font          = FONT(40);
     loadingLabel.text          = @"Loading Video Library";
     loadingLabel.textColor     = [UIColor whiteColor];
     [self.view addSubview:loadingLabel];
     
     submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];           // animated next button
     [submitButton addTarget:self  action:@selector(submitButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    [submitButton setTitle:@"Next" forState:UIControlStateNormal];
-    submitButton.titleLabel.font = [UIFont systemFontOfSize:20];
+    [submitButton setTitle:@"Play" forState:UIControlStateNormal];
+    submitButton.titleLabel.font = FONT(34);
+    [submitButton sizeToFit];
     [submitButton setBackgroundColor:[UIColor blueColor]];
     [submitButton setTintColor:[UIColor whiteColor]];
     submitButton.frame = CGRectMake(0,screenHeight, screenWidth, 50.0);
@@ -79,6 +93,14 @@ static int screenWidth = 0, screenHeight = 0;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(extractImage)];
     tap.numberOfTapsRequired    = 1;                                            // sets tap recognizer for image extraction
     [tapView addGestureRecognizer:tap];
+    
+    progressBar                 = [UIView new];
+    progressBar.frame           = CGRectMake(0, 0, 0, progressContainer.frame.size.height);
+    progressBar.backgroundColor = [UIColor blueColor];
+    [progressContainer addSubview:progressBar];
+    
+    nextButton.titleLabel.font = FONT(26);
+    backButton.titleLabel.font = FONT(26);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -92,7 +114,7 @@ static int screenWidth = 0, screenHeight = 0;
 
 -(void) movieSetup{                                                             // creates and playes video that is selected
     [self movieActive:YES];
-    progressWidthCons.constant = 0;
+    progressBar.frame = CGRectMake(0, 0, 0, progressContainer.frame.size.height);
     progressStop    = NO;
     stopped         = NO;
     started         = NO;
@@ -136,8 +158,7 @@ static int screenWidth = 0, screenHeight = 0;
     if (mc.currentPlaybackTime < mc.duration){
         float position = (mc.currentPlaybackTime/mc.duration) * screenWidth;
         [UIView animateWithDuration:0.1 animations:^(){
-            progressWidthCons.constant = position;
-            [self.view layoutIfNeeded];
+            progressBar.frame = CGRectMake(0, 0, position, progressContainer.frame.size.height);
         }];
     }else
         [timer invalidate];
@@ -173,6 +194,7 @@ static int screenWidth = 0, screenHeight = 0;
     if (floor(movieDimensions.width) < floor(movieDimensions.height))           // corrects image rotation
             currentImg = [self imageRotatedByDegrees : currentImg deg: 90];
 
+    currentImg = [self addWaterMark:currentImg];
     [imageArray addObject:currentImg];
 }
 
@@ -359,7 +381,7 @@ static int screenWidth = 0, screenHeight = 0;
 
 
 -(void) submitButtonUp{                                                         // animates next button up
-    [UIView animateWithDuration:0.5 animations:^(){
+    [UIView animateWithDuration:0.3 animations:^(){
         submitButton.frame = CGRectMake(0,screenHeight - 50, screenWidth, 50.0);
         collectionBottomConstraint.constant = 50.0;
         [self.view layoutIfNeeded];
@@ -367,7 +389,7 @@ static int screenWidth = 0, screenHeight = 0;
 }
 
 -(void) submitButtonDown{                                                       // animates next button down
-    [UIView animateWithDuration:0.5 animations:^(){
+    [UIView animateWithDuration:0.3 animations:^(){
         submitButton.frame = CGRectMake(0,screenHeight, screenWidth, 50.0);
         collectionBottomConstraint.constant = 0.0;
         [self.view layoutIfNeeded];
@@ -385,6 +407,39 @@ static int screenWidth = 0, screenHeight = 0;
     } completion:^(BOOL finished){
         [self movieSetup];
     }];
+}
+
+-(UIImage*) addWaterMark : (UIImage*) backgroundImage {
+    CGSize newSize = CGSizeMake(backgroundImage.size.width, backgroundImage.size.height);
+    UIGraphicsBeginImageContext( newSize );
+    
+    // Use existing opacity as is
+    [backgroundImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    
+    UIImage *watermark = [self customWaterMarkImage:backgroundImage.size];
+    // Apply supplied opacity if applicable
+    [watermark drawInRect:CGRectMake(0,newSize.height - watermark.size.height, watermark.size.width,watermark.size.height) blendMode:kCGBlendModeNormal alpha:0.6];
+    
+    UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return finalImage;
+}
+
+-(UIImage*) customWaterMarkImage : (CGSize) backroundFrame{
+    int viewHeight               = backroundFrame.height * 0.05;
+    UILabel *waterText           = [[UILabel alloc] initWithFrame:CGRectMake(0, backroundFrame.height - viewHeight, backroundFrame.width, viewHeight)];
+    waterText.textAlignment      = NSTextAlignmentCenter;
+    waterText.font               = WATERMARKFONT(viewHeight * 0.6);
+    waterText.minimumScaleFactor = 0.1;
+    waterText.text               = @"Alex Jacobson";
+    waterText.textColor          = [UIColor whiteColor];
+    waterText.backgroundColor    = [UIColor blueColor];
+    
+    UIGraphicsBeginImageContext(waterText.bounds.size);
+    [waterText.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return viewImage;
 }
 
 @end
