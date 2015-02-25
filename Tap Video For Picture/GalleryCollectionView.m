@@ -21,17 +21,17 @@ static int screenHeight = 0, screenWidth = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) // hides status bar
         [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
     else
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     
-    screenHeight = [[UIScreen mainScreen] bounds].size.height;
-    screenWidth  = [[UIScreen mainScreen] bounds].size.width;
+    screenHeight = [[UIScreen mainScreen] bounds].size.height;                  // sets screen height
+    screenWidth  = [[UIScreen mainScreen] bounds].size.width;                   // sets screen width
     [self.collection reloadData];
 }
 
-- (BOOL)prefersStatusBarHidden {
+- (BOOL)prefersStatusBarHidden {                                                // called to hide status bar
     return YES;
 }
 
@@ -41,22 +41,22 @@ static int screenHeight = 0, screenWidth = 0;
 
 #pragma mark <UICollectionViewDataSource>
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {// only one section
     return 1;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return imageArray.count;
+    return imageArray.count;                                                    // images to be displayed caount
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    UIImage *image           = [imageArray objectAtIndex:indexPath.row];
+    UIImage *image           = [imageArray objectAtIndex:indexPath.row];        // cell builder
     cell.cellImage.image     = image;
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+{                                                                               // dynamically set cell sizes based on different aspect ratios
     UIImage *image = [imageArray objectAtIndex:indexPath.row];
     
     float cellWidth;

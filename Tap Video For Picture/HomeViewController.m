@@ -35,39 +35,39 @@
 
 @implementation HomeViewController
 @synthesize mc,tapView,imageArray,videoView,totalTime,movieDimensions,galleryCollection,allVideos,oldIndexPath,collectionBottomConstraint,submitButton,currentIndexPath,activityIndcator,loadingLabel,timer,progressWidthCons;
+
 static bool stopped = NO,started = NO,progressStop = NO,videoActive = NO;
 static NSString *const reuseIdentifier = @"home";
 static int screenWidth = 0, screenHeight = 0;
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    screenWidth  = [[UIScreen mainScreen] bounds].size.width;
-    screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    screenWidth  = [[UIScreen mainScreen] bounds].size.width;                   // gets screen width
+    screenHeight = [[UIScreen mainScreen] bounds].size.height;                  // sets screen height
     [self loadViewsInit];
     
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)])
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) // hides status bar
         [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
     else
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
 }
 
-- (BOOL)prefersStatusBarHidden {
+- (BOOL)prefersStatusBarHidden {                                                // called to hide the staus bar
     return YES;
 }
 
--(void) loadViewsInit {
+-(void) loadViewsInit {                                                         // loads all custom made views and tap recognizer
     activityIndcator = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((screenWidth/2) - 10,(screenHeight/2) - 10,20,20)];
     activityIndcator.hidesWhenStopped = YES;
     [self.view addSubview:activityIndcator];
     
     loadingLabel               = [[UILabel alloc] initWithFrame:CGRectMake(0,(screenHeight/2) - 60,screenWidth,40)];
-    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    loadingLabel.textAlignment = NSTextAlignmentCenter;                         // loading label
     loadingLabel.text          = @"Loading Video Library";
     loadingLabel.textColor     = [UIColor whiteColor];
     [self.view addSubview:loadingLabel];
     
-    submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];           // animated next button
     [submitButton addTarget:self  action:@selector(submitButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [submitButton setTitle:@"Next" forState:UIControlStateNormal];
     submitButton.titleLabel.font = [UIFont systemFontOfSize:20];
@@ -77,20 +77,20 @@ static int screenWidth = 0, screenHeight = 0;
     [self.view addSubview:submitButton];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(extractImage)];
-    tap.numberOfTapsRequired    = 1;
+    tap.numberOfTapsRequired    = 1;                                            // sets tap recognizer for image extraction
     [tapView addGestureRecognizer:tap];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    imageArray   = [NSMutableArray new];
-    allVideos    = [NSMutableArray new];
+    imageArray   = [NSMutableArray new];                                        // array that stores extracted images
+    allVideos    = [NSMutableArray new];                                        // Video object that stores url and keyframe image
     oldIndexPath = nil;
     [self movieActive:NO];
     [self retriveAllVideos];
 }
 
--(void) movieSetup{
+-(void) movieSetup{                                                             // creates and playes video that is selected
     [self movieActive:YES];
     progressWidthCons.constant = 0;
     progressStop    = NO;
@@ -106,17 +106,17 @@ static int screenWidth = 0, screenHeight = 0;
     self.mc                  = controller;
     [self.videoView addSubview:self.mc.view];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
+    [[NSNotificationCenter defaultCenter] addObserver:self                      // called when playback is done
                                              selector:@selector(moviePlayBackDidFinish:)
                                                  name:MPMoviePlayerPlaybackDidFinishNotification
                                                object:self.mc];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
+    [[NSNotificationCenter defaultCenter] addObserver:self                      // called to set global frame of video
                                              selector:@selector(movieNaturalSizeAvailable:)
                                                  name:MPMovieNaturalSizeAvailableNotification
                                                object:mc];
     
-    [self performSelector:@selector(playDelay) withObject:nil afterDelay:1];
+    [self performSelector:@selector(playDelay) withObject:nil afterDelay:1];    // need delay to allow system to start video
     [self performSelector:@selector(videoProgresIndicatior) withObject:nil afterDelay:1.5];
 }
 
@@ -124,7 +124,7 @@ static int screenWidth = 0, screenHeight = 0;
     [self.mc play];
 }
 
--(void) videoProgresIndicatior {
+-(void) videoProgresIndicatior {                                                // runs on a loop to animate custom progress indicator
     timer = [NSTimer scheduledTimerWithTimeInterval: 0.1f
                                              target: self
                                            selector: @selector(updateProgressBar)
@@ -132,7 +132,7 @@ static int screenWidth = 0, screenHeight = 0;
                                             repeats: YES];
 }
 
--(void) updateProgressBar {
+-(void) updateProgressBar {                                                     // handles progress bar animations
     if (mc.currentPlaybackTime < mc.duration){
         float position = (mc.currentPlaybackTime/mc.duration) * screenWidth;
         [UIView animateWithDuration:0.1 animations:^(){
@@ -144,7 +144,7 @@ static int screenWidth = 0, screenHeight = 0;
     
 }
 
--(void) movieActive : (BOOL) movieActive {
+-(void) movieActive : (BOOL) movieActive {                                      // sets view alphas
     if (movieActive){
         tapView.hidden = NO;
         [UIView animateWithDuration:0.5 animations:^(){
@@ -159,33 +159,33 @@ static int screenWidth = 0, screenHeight = 0;
     }
 }
 
--(void)extractImage {
+-(void)extractImage {                                                           // called when user taps screen to extract image
     VideoClass *vid = [allVideos objectAtIndex:currentIndexPath.row];
     AVURLAsset *as                   = [[AVURLAsset alloc] initWithURL:vid.url options:nil];
     AVAssetImageGenerator *ima       = [[AVAssetImageGenerator alloc] initWithAsset:as];
-    ima.requestedTimeToleranceBefore = kCMTimeZero;
+    ima.requestedTimeToleranceBefore = kCMTimeZero;                             // gets exact frame instead of keyframe
     ima.requestedTimeToleranceAfter  = kCMTimeZero;
     NSError *err                     = NULL;
     CMTime time                      = CMTimeMake(mc.currentPlaybackTime * as.duration.timescale, as.duration.timescale);
     CGImageRef imgRef                = [ima copyCGImageAtTime:time actualTime:NULL error:&err];
     UIImage *currentImg              = [[UIImage alloc] initWithCGImage:imgRef];
     
-    if (floor(movieDimensions.width) < floor(movieDimensions.height))
+    if (floor(movieDimensions.width) < floor(movieDimensions.height))           // corrects image rotation
             currentImg = [self imageRotatedByDegrees : currentImg deg: 90];
 
     [imageArray addObject:currentImg];
 }
 
-- (void) moviePlayBackDidFinish:(NSNotification*)notification {
+- (void) moviePlayBackDidFinish:(NSNotification*)notification {                 // observer called when movie stopped
     progressStop = YES;
     [self stopMovie:nil];
 }
 
-- (void) movieNaturalSizeAvailable:(NSNotification*)notification {
+- (void) movieNaturalSizeAvailable:(NSNotification*)notification {              // observer called to set movie demenisions
     movieDimensions = mc.naturalSize;
 }
 
--(IBAction) stopMovie:(id)sender  {
+-(IBAction) stopMovie:(id)sender  {                                             // stops movie and resets movie player for new movie
     if (stopped) 
         return;
     stopped = YES;
@@ -194,11 +194,11 @@ static int screenWidth = 0, screenHeight = 0;
     [self.mc.view removeFromSuperview];
     [[NSNotificationCenter defaultCenter] removeObserver: self];
     if (imageArray.count > 0)
-        [self performSegueWithIdentifier:@"gallery" sender:nil];
+        [self performSegueWithIdentifier:@"gallery" sender:nil];                // goes to photo review
     else
         [self movieActive:NO];
 }
-- (IBAction)backButton:(id)sender {
+- (IBAction)backButton:(id)sender {                                             // cancel video go back to video gallery
     if (stopped)
         return;
     stopped = YES;
@@ -210,12 +210,12 @@ static int screenWidth = 0, screenHeight = 0;
     [imageArray removeAllObjects];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {          // send video array to next view
     GalleryCollectionView *vc = [segue destinationViewController];
     vc.imageArray             = imageArray;
 }
 
-- (UIImage *)imageRotatedByDegrees:(UIImage*)oldImage deg:(CGFloat)degrees{
+- (UIImage *)imageRotatedByDegrees:(UIImage*)oldImage deg:(CGFloat)degrees{     // fixes image rotation issues
     UIView *rotatedViewBox   = [[UIView alloc] initWithFrame:CGRectMake(0,0,oldImage.size.width, oldImage.size.height)];
     CGAffineTransform t      = CGAffineTransformMakeRotation(degrees * M_PI / 180);
     rotatedViewBox.transform = t;
@@ -232,7 +232,8 @@ static int screenWidth = 0, screenHeight = 0;
     return newImage;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning {                                               // handles if user taps to many times and takes up all
+                                                                                // the memory
     [super didReceiveMemoryWarning];
     [self stopMovie:nil];
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"Error:"
@@ -243,7 +244,7 @@ static int screenWidth = 0, screenHeight = 0;
     [alert show];
 }
 
-- (void)retriveAllVideos{
+- (void)retriveAllVideos{                                                       // ran on own async thread to collect all the videos
     loadingLabel.hidden = NO;
     [activityIndcator startAnimating];
     allVideos = [NSMutableArray new];
@@ -257,9 +258,9 @@ static int screenWidth = 0, screenHeight = 0;
                     ALAssetRepresentation *defaultRepresentation = [asset defaultRepresentation];
                     NSString *uti    = [defaultRepresentation UTI];
                     NSURL *urlTemp   = [[asset valueForProperty:ALAssetPropertyURLs] valueForKey:uti];
-                    VideoClass *temp = [VideoClass new];
+                    VideoClass *temp = [VideoClass new];                        // set video object
                     temp.url         = urlTemp;
-                    temp.imageData   = [self keyFrame:urlTemp];
+                    temp.imageData   = [self keyFrame:urlTemp];                 // get first frame
                     [allVideos addObject:temp];
                 }
             }];
@@ -279,28 +280,28 @@ static int screenWidth = 0, screenHeight = 0;
     }];
 }
 
-- (NSData *) keyFrame : (NSURL*) currentUrl{
+- (NSData *) keyFrame : (NSURL*) currentUrl{                                    // grabs first frame to display in video picker
     AVAsset *asset = [[AVURLAsset alloc] initWithURL:currentUrl options:nil];;
     AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
     imageGenerator.appliesPreferredTrackTransform = YES;
     CMTime midpoint = CMTimeMake(0, 600);
     NSError *error = nil;
     CMTime actualTime;
-    CGImageRef halfWayImage = [imageGenerator copyCGImageAtTime:midpoint actualTime:&actualTime error:&error];
+    CGImageRef firstFrame = [imageGenerator copyCGImageAtTime:midpoint actualTime:&actualTime error:&error];
     
     UIImage *image;
     NSData *binaryImageData;
-    if (halfWayImage != NULL) {
-        image = [[UIImage alloc] initWithCGImage:halfWayImage];
+    if (firstFrame != NULL) {
+        image = [[UIImage alloc] initWithCGImage:firstFrame];
         binaryImageData = UIImageJPEGRepresentation(image, 0.2f);
-        CGImageRelease(halfWayImage);
+        CGImageRelease(firstFrame);
     }
     return binaryImageData;
 }
 
 #pragma mark <UICollectionViewDataSource>
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{// toggles highlighted cell
     currentIndexPath = indexPath;
     VideoClass *vid = [allVideos objectAtIndex:indexPath.row];
     if (oldIndexPath == nil) {
@@ -329,15 +330,15 @@ static int screenWidth = 0, screenHeight = 0;
         [self submitButtonDown];
 }
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {// sections in gallery
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section { // how many videos are there
     return allVideos.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath { //assembles the collection cell
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     VideoClass *vid          = [allVideos objectAtIndex:indexPath.row];
     cell.cellImage.image     = [UIImage imageWithData:vid.imageData];
@@ -350,7 +351,14 @@ static int screenWidth = 0, screenHeight = 0;
     return cell;
 }
 
--(void) submitButtonUp{
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{                                                                               // dynamically sets cell sizes for iphone screen
+    int cellWidth = screenWidth/3.2;
+    return CGSizeMake(cellWidth, cellWidth);
+}
+
+
+-(void) submitButtonUp{                                                         // animates next button up
     [UIView animateWithDuration:0.5 animations:^(){
         submitButton.frame = CGRectMake(0,screenHeight - 50, screenWidth, 50.0);
         collectionBottomConstraint.constant = 50.0;
@@ -358,7 +366,7 @@ static int screenWidth = 0, screenHeight = 0;
     }];
 }
 
--(void) submitButtonDown{
+-(void) submitButtonDown{                                                       // animates next button down
     [UIView animateWithDuration:0.5 animations:^(){
         submitButton.frame = CGRectMake(0,screenHeight, screenWidth, 50.0);
         collectionBottomConstraint.constant = 0.0;
@@ -366,7 +374,7 @@ static int screenWidth = 0, screenHeight = 0;
     }];
 }
 
--(void) submitButtonAction {
+-(void) submitButtonAction {                                                    // when user hits submit
     VideoClass *vid = [allVideos objectAtIndex:currentIndexPath.row];
     vid.selected    = NO;
     [galleryCollection reloadItemsAtIndexPaths:@[currentIndexPath]];
@@ -377,13 +385,6 @@ static int screenWidth = 0, screenHeight = 0;
     } completion:^(BOOL finished){
         [self movieSetup];
     }];
-}
-
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    int cellWidth = screenWidth/3.2;
-    return CGSizeMake(cellWidth, cellWidth);
 }
 
 @end
