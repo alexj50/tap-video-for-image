@@ -10,11 +10,14 @@
 		D97FEFB71A9D9E36006A1801 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFB61A9D9E36006A1801 /* main.m */; };
 		D97FEFBA1A9D9E36006A1801 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFB91A9D9E36006A1801 /* AppDelegate.m */; };
 		D97FEFBD1A9D9E36006A1801 /* Tap_Video_For_Picture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFBB1A9D9E36006A1801 /* Tap_Video_For_Picture.xcdatamodeld */; };
-		D97FEFC01A9D9E36006A1801 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFBF1A9D9E36006A1801 /* ViewController.m */; };
-		D97FEFC31A9D9E36006A1801 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D97FEFC11A9D9E36006A1801 /* Main.storyboard */; };
 		D97FEFC51A9D9E36006A1801 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D97FEFC41A9D9E36006A1801 /* Images.xcassets */; };
 		D97FEFC81A9D9E36006A1801 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FEFC61A9D9E36006A1801 /* LaunchScreen.xib */; };
 		D97FEFD41A9D9E36006A1801 /* Tap_Video_For_PictureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFD31A9D9E36006A1801 /* Tap_Video_For_PictureTests.m */; };
+		D97FEFE31A9D9E5C006A1801 /* GalleryCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFDE1A9D9E5C006A1801 /* GalleryCollectionView.m */; };
+		D97FEFE41A9D9E5C006A1801 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFE01A9D9E5C006A1801 /* CollectionViewCell.m */; };
+		D97FEFE51A9D9E5C006A1801 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFE21A9D9E5C006A1801 /* HomeViewController.m */; };
+		D97FEFE81A9D9E64006A1801 /* VideoClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFE71A9D9E64006A1801 /* VideoClass.m */; };
+		D97FEFEA1A9D9E88006A1801 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D97FEFE91A9D9E88006A1801 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,14 +37,20 @@
 		D97FEFB81A9D9E36006A1801 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D97FEFB91A9D9E36006A1801 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D97FEFBC1A9D9E36006A1801 /* Tap_Video_For_Picture.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tap_Video_For_Picture.xcdatamodel; sourceTree = "<group>"; };
-		D97FEFBE1A9D9E36006A1801 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D97FEFBF1A9D9E36006A1801 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		D97FEFC21A9D9E36006A1801 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D97FEFC41A9D9E36006A1801 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D97FEFC71A9D9E36006A1801 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D97FEFCD1A9D9E36006A1801 /* Tap Video For PictureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tap Video For PictureTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D97FEFD21A9D9E36006A1801 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D97FEFD31A9D9E36006A1801 /* Tap_Video_For_PictureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tap_Video_For_PictureTests.m; sourceTree = "<group>"; };
+		D97FEFDD1A9D9E5C006A1801 /* GalleryCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryCollectionView.h; sourceTree = "<group>"; };
+		D97FEFDE1A9D9E5C006A1801 /* GalleryCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryCollectionView.m; sourceTree = "<group>"; };
+		D97FEFDF1A9D9E5C006A1801 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
+		D97FEFE01A9D9E5C006A1801 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
+		D97FEFE11A9D9E5C006A1801 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		D97FEFE21A9D9E5C006A1801 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		D97FEFE61A9D9E64006A1801 /* VideoClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoClass.h; sourceTree = "<group>"; };
+		D97FEFE71A9D9E64006A1801 /* VideoClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoClass.m; sourceTree = "<group>"; };
+		D97FEFE91A9D9E88006A1801 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,11 +92,17 @@
 		D97FEFB31A9D9E36006A1801 /* Tap Video For Picture */ = {
 			isa = PBXGroup;
 			children = (
+				D97FEFDD1A9D9E5C006A1801 /* GalleryCollectionView.h */,
+				D97FEFDE1A9D9E5C006A1801 /* GalleryCollectionView.m */,
+				D97FEFDF1A9D9E5C006A1801 /* CollectionViewCell.h */,
+				D97FEFE01A9D9E5C006A1801 /* CollectionViewCell.m */,
+				D97FEFE11A9D9E5C006A1801 /* HomeViewController.h */,
+				D97FEFE21A9D9E5C006A1801 /* HomeViewController.m */,
+				D97FEFE61A9D9E64006A1801 /* VideoClass.h */,
+				D97FEFE71A9D9E64006A1801 /* VideoClass.m */,
 				D97FEFB81A9D9E36006A1801 /* AppDelegate.h */,
 				D97FEFB91A9D9E36006A1801 /* AppDelegate.m */,
-				D97FEFBE1A9D9E36006A1801 /* ViewController.h */,
-				D97FEFBF1A9D9E36006A1801 /* ViewController.m */,
-				D97FEFC11A9D9E36006A1801 /* Main.storyboard */,
+				D97FEFE91A9D9E88006A1801 /* Main.storyboard */,
 				D97FEFC41A9D9E36006A1801 /* Images.xcassets */,
 				D97FEFC61A9D9E36006A1801 /* LaunchScreen.xib */,
 				D97FEFBB1A9D9E36006A1801 /* Tap_Video_For_Picture.xcdatamodeld */,
@@ -202,7 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D97FEFC31A9D9E36006A1801 /* Main.storyboard in Resources */,
+				D97FEFEA1A9D9E88006A1801 /* Main.storyboard in Resources */,
 				D97FEFC81A9D9E36006A1801 /* LaunchScreen.xib in Resources */,
 				D97FEFC51A9D9E36006A1801 /* Images.xcassets in Resources */,
 			);
@@ -223,9 +238,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D97FEFBD1A9D9E36006A1801 /* Tap_Video_For_Picture.xcdatamodeld in Sources */,
+				D97FEFE41A9D9E5C006A1801 /* CollectionViewCell.m in Sources */,
+				D97FEFE31A9D9E5C006A1801 /* GalleryCollectionView.m in Sources */,
 				D97FEFBA1A9D9E36006A1801 /* AppDelegate.m in Sources */,
-				D97FEFC01A9D9E36006A1801 /* ViewController.m in Sources */,
 				D97FEFB71A9D9E36006A1801 /* main.m in Sources */,
+				D97FEFE51A9D9E5C006A1801 /* HomeViewController.m in Sources */,
+				D97FEFE81A9D9E64006A1801 /* VideoClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,14 +266,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D97FEFC11A9D9E36006A1801 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D97FEFC21A9D9E36006A1801 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D97FEFC61A9D9E36006A1801 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -349,9 +359,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "Tap Video For Picture/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -359,9 +372,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "Tap Video For Picture/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -418,6 +434,7 @@
 				D97FEFD91A9D9E36006A1801 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D97FEFDA1A9D9E36006A1801 /* Build configuration list for PBXNativeTarget "Tap Video For PictureTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +443,7 @@
 				D97FEFDC1A9D9E36006A1801 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
