@@ -1,0 +1,446 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D97FEFB71A9D9E36006A1801 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFB61A9D9E36006A1801 /* main.m */; };
+		D97FEFBA1A9D9E36006A1801 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFB91A9D9E36006A1801 /* AppDelegate.m */; };
+		D97FEFBD1A9D9E36006A1801 /* Tap_Video_For_Picture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFBB1A9D9E36006A1801 /* Tap_Video_For_Picture.xcdatamodeld */; };
+		D97FEFC01A9D9E36006A1801 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFBF1A9D9E36006A1801 /* ViewController.m */; };
+		D97FEFC31A9D9E36006A1801 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D97FEFC11A9D9E36006A1801 /* Main.storyboard */; };
+		D97FEFC51A9D9E36006A1801 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D97FEFC41A9D9E36006A1801 /* Images.xcassets */; };
+		D97FEFC81A9D9E36006A1801 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FEFC61A9D9E36006A1801 /* LaunchScreen.xib */; };
+		D97FEFD41A9D9E36006A1801 /* Tap_Video_For_PictureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D97FEFD31A9D9E36006A1801 /* Tap_Video_For_PictureTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D97FEFCE1A9D9E36006A1801 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D97FEFA91A9D9E36006A1801 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D97FEFB01A9D9E36006A1801;
+			remoteInfo = "Tap Video For Picture";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D97FEFB11A9D9E36006A1801 /* Tap Video For Picture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tap Video For Picture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D97FEFB51A9D9E36006A1801 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D97FEFB61A9D9E36006A1801 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D97FEFB81A9D9E36006A1801 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D97FEFB91A9D9E36006A1801 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D97FEFBC1A9D9E36006A1801 /* Tap_Video_For_Picture.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tap_Video_For_Picture.xcdatamodel; sourceTree = "<group>"; };
+		D97FEFBE1A9D9E36006A1801 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D97FEFBF1A9D9E36006A1801 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D97FEFC21A9D9E36006A1801 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D97FEFC41A9D9E36006A1801 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D97FEFC71A9D9E36006A1801 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		D97FEFCD1A9D9E36006A1801 /* Tap Video For PictureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tap Video For PictureTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D97FEFD21A9D9E36006A1801 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D97FEFD31A9D9E36006A1801 /* Tap_Video_For_PictureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tap_Video_For_PictureTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D97FEFAE1A9D9E36006A1801 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D97FEFCA1A9D9E36006A1801 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D97FEFA81A9D9E36006A1801 = {
+			isa = PBXGroup;
+			children = (
+				D97FEFB31A9D9E36006A1801 /* Tap Video For Picture */,
+				D97FEFD01A9D9E36006A1801 /* Tap Video For PictureTests */,
+				D97FEFB21A9D9E36006A1801 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D97FEFB21A9D9E36006A1801 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D97FEFB11A9D9E36006A1801 /* Tap Video For Picture.app */,
+				D97FEFCD1A9D9E36006A1801 /* Tap Video For PictureTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D97FEFB31A9D9E36006A1801 /* Tap Video For Picture */ = {
+			isa = PBXGroup;
+			children = (
+				D97FEFB81A9D9E36006A1801 /* AppDelegate.h */,
+				D97FEFB91A9D9E36006A1801 /* AppDelegate.m */,
+				D97FEFBE1A9D9E36006A1801 /* ViewController.h */,
+				D97FEFBF1A9D9E36006A1801 /* ViewController.m */,
+				D97FEFC11A9D9E36006A1801 /* Main.storyboard */,
+				D97FEFC41A9D9E36006A1801 /* Images.xcassets */,
+				D97FEFC61A9D9E36006A1801 /* LaunchScreen.xib */,
+				D97FEFBB1A9D9E36006A1801 /* Tap_Video_For_Picture.xcdatamodeld */,
+				D97FEFB41A9D9E36006A1801 /* Supporting Files */,
+			);
+			path = "Tap Video For Picture";
+			sourceTree = "<group>";
+		};
+		D97FEFB41A9D9E36006A1801 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D97FEFB51A9D9E36006A1801 /* Info.plist */,
+				D97FEFB61A9D9E36006A1801 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D97FEFD01A9D9E36006A1801 /* Tap Video For PictureTests */ = {
+			isa = PBXGroup;
+			children = (
+				D97FEFD31A9D9E36006A1801 /* Tap_Video_For_PictureTests.m */,
+				D97FEFD11A9D9E36006A1801 /* Supporting Files */,
+			);
+			path = "Tap Video For PictureTests";
+			sourceTree = "<group>";
+		};
+		D97FEFD11A9D9E36006A1801 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D97FEFD21A9D9E36006A1801 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D97FEFB01A9D9E36006A1801 /* Tap Video For Picture */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D97FEFD71A9D9E36006A1801 /* Build configuration list for PBXNativeTarget "Tap Video For Picture" */;
+			buildPhases = (
+				D97FEFAD1A9D9E36006A1801 /* Sources */,
+				D97FEFAE1A9D9E36006A1801 /* Frameworks */,
+				D97FEFAF1A9D9E36006A1801 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Tap Video For Picture";
+			productName = "Tap Video For Picture";
+			productReference = D97FEFB11A9D9E36006A1801 /* Tap Video For Picture.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D97FEFCC1A9D9E36006A1801 /* Tap Video For PictureTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D97FEFDA1A9D9E36006A1801 /* Build configuration list for PBXNativeTarget "Tap Video For PictureTests" */;
+			buildPhases = (
+				D97FEFC91A9D9E36006A1801 /* Sources */,
+				D97FEFCA1A9D9E36006A1801 /* Frameworks */,
+				D97FEFCB1A9D9E36006A1801 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D97FEFCF1A9D9E36006A1801 /* PBXTargetDependency */,
+			);
+			name = "Tap Video For PictureTests";
+			productName = "Tap Video For PictureTests";
+			productReference = D97FEFCD1A9D9E36006A1801 /* Tap Video For PictureTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D97FEFA91A9D9E36006A1801 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Alex Jacobson";
+				TargetAttributes = {
+					D97FEFB01A9D9E36006A1801 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					D97FEFCC1A9D9E36006A1801 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = D97FEFB01A9D9E36006A1801;
+					};
+				};
+			};
+			buildConfigurationList = D97FEFAC1A9D9E36006A1801 /* Build configuration list for PBXProject "Tap Video For Picture" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D97FEFA81A9D9E36006A1801;
+			productRefGroup = D97FEFB21A9D9E36006A1801 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D97FEFB01A9D9E36006A1801 /* Tap Video For Picture */,
+				D97FEFCC1A9D9E36006A1801 /* Tap Video For PictureTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D97FEFAF1A9D9E36006A1801 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D97FEFC31A9D9E36006A1801 /* Main.storyboard in Resources */,
+				D97FEFC81A9D9E36006A1801 /* LaunchScreen.xib in Resources */,
+				D97FEFC51A9D9E36006A1801 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D97FEFCB1A9D9E36006A1801 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D97FEFAD1A9D9E36006A1801 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D97FEFBD1A9D9E36006A1801 /* Tap_Video_For_Picture.xcdatamodeld in Sources */,
+				D97FEFBA1A9D9E36006A1801 /* AppDelegate.m in Sources */,
+				D97FEFC01A9D9E36006A1801 /* ViewController.m in Sources */,
+				D97FEFB71A9D9E36006A1801 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D97FEFC91A9D9E36006A1801 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D97FEFD41A9D9E36006A1801 /* Tap_Video_For_PictureTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D97FEFCF1A9D9E36006A1801 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D97FEFB01A9D9E36006A1801 /* Tap Video For Picture */;
+			targetProxy = D97FEFCE1A9D9E36006A1801 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D97FEFC11A9D9E36006A1801 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D97FEFC21A9D9E36006A1801 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D97FEFC61A9D9E36006A1801 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D97FEFC71A9D9E36006A1801 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D97FEFD51A9D9E36006A1801 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D97FEFD61A9D9E36006A1801 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D97FEFD81A9D9E36006A1801 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Tap Video For Picture/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D97FEFD91A9D9E36006A1801 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Tap Video For Picture/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D97FEFDB1A9D9E36006A1801 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Tap Video For PictureTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tap Video For Picture.app/Tap Video For Picture";
+			};
+			name = Debug;
+		};
+		D97FEFDC1A9D9E36006A1801 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Tap Video For PictureTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tap Video For Picture.app/Tap Video For Picture";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D97FEFAC1A9D9E36006A1801 /* Build configuration list for PBXProject "Tap Video For Picture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D97FEFD51A9D9E36006A1801 /* Debug */,
+				D97FEFD61A9D9E36006A1801 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D97FEFD71A9D9E36006A1801 /* Build configuration list for PBXNativeTarget "Tap Video For Picture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D97FEFD81A9D9E36006A1801 /* Debug */,
+				D97FEFD91A9D9E36006A1801 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D97FEFDA1A9D9E36006A1801 /* Build configuration list for PBXNativeTarget "Tap Video For PictureTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D97FEFDB1A9D9E36006A1801 /* Debug */,
+				D97FEFDC1A9D9E36006A1801 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D97FEFBB1A9D9E36006A1801 /* Tap_Video_For_Picture.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D97FEFBC1A9D9E36006A1801 /* Tap_Video_For_Picture.xcdatamodel */,
+			);
+			currentVersion = D97FEFBC1A9D9E36006A1801 /* Tap_Video_For_Picture.xcdatamodel */;
+			path = Tap_Video_For_Picture.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = D97FEFA91A9D9E36006A1801 /* Project object */;
+}
