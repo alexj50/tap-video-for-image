@@ -80,6 +80,7 @@ static int screenWidth = 0, screenHeight = 0,backgroundActive = 0;
     loadingLabel.textAlignment = NSTextAlignmentCenter;                         // loading label
     loadingLabel.font          = FONT(40);
     loadingLabel.text          = @"Loading Video Library";
+    loadingLabel.numberOfLines = 0;
     loadingLabel.textColor     = [UIColor whiteColor];
     [self.view addSubview:loadingLabel];
     
@@ -109,9 +110,12 @@ static int screenWidth = 0, screenHeight = 0,backgroundActive = 0;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    imageArray   = [NSMutableArray new];                                        // array that stores extracted images
-    oldIndexPath = nil;
-    [self movieActive:NO];
+    imageArray              = [NSMutableArray new];                             // array that stores extracted images
+    oldIndexPath            = nil;
+    videoActive             = NO;
+    tapView.alpha           = 0;
+    galleryCollection.alpha = 0.0;
+    HomeTitle.alpha         = 1.0;
     [self retriveAllVideos];
 }
 
@@ -323,10 +327,10 @@ static int screenWidth = 0, screenHeight = 0,backgroundActive = 0;
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [activityIndcator stopAnimating];
-                [self movieActive:NO];
                 if (allVideos.count == 0) {
-                    loadingLabel.text = @"You do not have any videos on your phone";
+                    loadingLabel.text = @"No Videos";
                 }else{
+                    [self movieActive:NO];
                     [galleryCollection reloadData];
                     loadingLabel.hidden = YES;
                 }
