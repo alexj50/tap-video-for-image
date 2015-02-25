@@ -17,9 +17,7 @@
 #define WATERMARKFONT(s) [UIFont fontWithName:@"Story Book" size:s]
 
 #import "HomeViewController.h"
-#import <MobileCoreServices/UTCoreTypes.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import <QuartzCore/QuartzCore.h>
 #import <AVFoundation/AVFoundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "GalleryCollectionView.h"
