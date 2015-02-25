@@ -10,6 +10,8 @@
 //
 //  Any commercial use of this software without the expressed written
 //  concent of Alex Jacobson is strictly forbidden
+//
+// contact: ajacobson50@gmial.com
 
 #define FONT(s) [UIFont fontWithName:@"BrushHandNew" size:s]
 #define WATERMARKFONT(s) [UIFont fontWithName:@"Story Book" size:s]
@@ -32,8 +34,9 @@
 @property (strong, nonatomic) IBOutlet UIView *progressContainer;
 @property (strong, nonatomic) IBOutlet UIButton *nextButton;
 @property (strong, nonatomic) IBOutlet UIButton *backButton;
+@property (strong, nonatomic) IBOutlet UILabel *HomeTitle;
 @property (strong, nonatomic) MPMoviePlayerController *mc;
-@property (strong, nonatomic) NSMutableArray *imageArray,*allVideos;
+@property (strong, nonatomic) NSMutableArray *imageArray;
 @property (strong, nonatomic) NSIndexPath *oldIndexPath,*currentIndexPath;
 @property (strong, nonatomic) UIButton *submitButton;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndcator;
@@ -46,11 +49,11 @@
 @end
 
 @implementation HomeViewController
-@synthesize mc,tapView,imageArray,videoView,totalTime,movieDimensions,galleryCollection,allVideos,oldIndexPath,collectionBottomConstraint,submitButton,currentIndexPath,activityIndcator,loadingLabel,timer,progressBar,progressContainer,nextButton,backButton;
+@synthesize mc,tapView,imageArray,videoView,totalTime,movieDimensions,galleryCollection,allVideos,oldIndexPath,collectionBottomConstraint,submitButton,currentIndexPath,activityIndcator,loadingLabel,timer,progressBar,progressContainer,nextButton,backButton,HomeTitle;
 
 static bool stopped = NO,started = NO,progressStop = NO,videoActive = NO;
 static NSString *const reuseIdentifier = @"home";
-static int screenWidth = 0, screenHeight = 0;
+static int screenWidth = 0, screenHeight = 0,backgroundActive = 0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -99,21 +102,21 @@ static int screenWidth = 0, screenHeight = 0;
     progressBar.backgroundColor = [UIColor blueColor];
     [progressContainer addSubview:progressBar];
     
-    nextButton.titleLabel.font = FONT(26);
-    backButton.titleLabel.font = FONT(26);
+    nextButton.titleLabel.font = FONT(26);                                      // Sets next button font
+    backButton.titleLabel.font = FONT(26);                                      // Sets back button font
+    HomeTitle.font             = FONT(48);                                      // sets tiltle font
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     imageArray   = [NSMutableArray new];                                        // array that stores extracted images
-    allVideos    = [NSMutableArray new];                                        // Video object that stores url and keyframe image
     oldIndexPath = nil;
     [self movieActive:NO];
     [self retriveAllVideos];
 }
 
 -(void) movieSetup{                                                             // creates and playes video that is selected
-    [self movieActive:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
     progressBar.frame = CGRectMake(0, 0, 0, progressContainer.frame.size.height);
     progressStop    = NO;
     stopped         = NO;
@@ -138,12 +141,12 @@ static int screenWidth = 0, screenHeight = 0;
                                                  name:MPMovieNaturalSizeAvailableNotification
                                                object:mc];
     
-    [self performSelector:@selector(playDelay) withObject:nil afterDelay:1];    // need delay to allow system to start video
-    [self performSelector:@selector(videoProgresIndicatior) withObject:nil afterDelay:1.5];
+
 }
 
--(void) playDelay {
+-(void) play{
     [self.mc play];
+    [self videoProgresIndicatior];
 }
 
 -(void) videoProgresIndicatior {                                                // runs on a loop to animate custom progress indicator
@@ -167,35 +170,50 @@ static int screenWidth = 0, screenHeight = 0;
 
 -(void) movieActive : (BOOL) movieActive {                                      // sets view alphas
     if (movieActive){
-        tapView.hidden = NO;
         [UIView animateWithDuration:0.5 animations:^(){
+            tapView.alpha           = 1;
             galleryCollection.alpha = 0.0;
+            HomeTitle.alpha         = 0.0;
         }];
     }else{
         videoActive = NO;
-        tapView.hidden = YES;
         [UIView animateWithDuration:0.5 animations:^(){
+            tapView.alpha           = 0;
             galleryCollection.alpha = 1.0;
+            HomeTitle.alpha         = 1.0;
         }];
     }
 }
 
 -(void)extractImage {                                                           // called when user taps screen to extract image
-    VideoClass *vid = [allVideos objectAtIndex:currentIndexPath.row];
-    AVURLAsset *as                   = [[AVURLAsset alloc] initWithURL:vid.url options:nil];
-    AVAssetImageGenerator *ima       = [[AVAssetImageGenerator alloc] initWithAsset:as];
-    ima.requestedTimeToleranceBefore = kCMTimeZero;                             // gets exact frame instead of keyframe
-    ima.requestedTimeToleranceAfter  = kCMTimeZero;
-    NSError *err                     = NULL;
-    CMTime time                      = CMTimeMake(mc.currentPlaybackTime * as.duration.timescale, as.duration.timescale);
-    CGImageRef imgRef                = [ima copyCGImageAtTime:time actualTime:NULL error:&err];
-    UIImage *currentImg              = [[UIImage alloc] initWithCGImage:imgRef];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        backgroundActive                 = 2;
+        VideoClass *vid                  = [allVideos objectAtIndex:currentIndexPath.row];
+        AVURLAsset *as                   = [[AVURLAsset alloc] initWithURL:vid.url options:nil];
+        AVAssetImageGenerator *ima       = [[AVAssetImageGenerator alloc] initWithAsset:as];
+        ima.requestedTimeToleranceBefore = kCMTimeZero;                         // gets exact frame instead of keyframe
+        ima.requestedTimeToleranceAfter  = kCMTimeZero;
+        NSError *err                     = NULL;
+        CMTime time                      = CMTimeMake(mc.currentPlaybackTime * as.duration.timescale, as.duration.timescale);
+        CGImageRef imgRef                = [ima copyCGImageAtTime:time actualTime:NULL error:&err];
+        UIImage *currentImg              = [[UIImage alloc] initWithCGImage:imgRef];
     
-    if (floor(movieDimensions.width) < floor(movieDimensions.height))           // corrects image rotation
+        if (floor(movieDimensions.width) < floor(movieDimensions.height))       // corrects image rotation
             currentImg = [self imageRotatedByDegrees : currentImg deg: 90];
 
-    currentImg = [self addWaterMark:currentImg];
-    [imageArray addObject:currentImg];
+        currentImg = [self addWaterMark:currentImg];
+        [imageArray addObject:currentImg];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (backgroundActive == 1) {
+                if (imageArray.count > 0)
+                    [self performSegueWithIdentifier:@"gallery" sender:nil];    // goes to photo review
+                else
+                    [self movieActive:NO];
+            }
+            
+            backgroundActive = 0;
+        });
+    });
 }
 
 - (void) moviePlayBackDidFinish:(NSNotification*)notification {                 // observer called when movie stopped
@@ -215,6 +233,11 @@ static int screenWidth = 0, screenHeight = 0;
     [self.mc setContentURL:nil];
     [self.mc.view removeFromSuperview];
     [[NSNotificationCenter defaultCenter] removeObserver: self];
+    
+    if (backgroundActive == 2) {
+        backgroundActive = 1;
+        return;
+    }
     if (imageArray.count > 0)
         [self performSegueWithIdentifier:@"gallery" sender:nil];                // goes to photo review
     else
@@ -235,6 +258,7 @@ static int screenWidth = 0, screenHeight = 0;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {          // send video array to next view
     GalleryCollectionView *vc = [segue destinationViewController];
     vc.imageArray             = imageArray;
+    vc.allVideos              = allVideos;
 }
 
 - (UIImage *)imageRotatedByDegrees:(UIImage*)oldImage deg:(CGFloat)degrees{     // fixes image rotation issues
@@ -267,9 +291,19 @@ static int screenWidth = 0, screenHeight = 0;
 }
 
 - (void)retriveAllVideos{                                                       // ran on own async thread to collect all the videos
+    HomeTitle.alpha = 0.0;
+    if (allVideos == nil || allVideos.count == 0)
+        allVideos = [NSMutableArray new];                                       // Video object that stores url and keyframe image
+    else{
+        [activityIndcator stopAnimating];
+        [galleryCollection reloadData];
+        loadingLabel.hidden = YES;
+        [self movieActive:NO];
+        return;
+    }
     loadingLabel.hidden = NO;
     [activityIndcator startAnimating];
-    allVideos = [NSMutableArray new];
+
     ALAssetsLibrary *assetLibrary = [ALAssetsLibrary new];
     
     [assetLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
@@ -289,6 +323,7 @@ static int screenWidth = 0, screenHeight = 0;
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [activityIndcator stopAnimating];
+                [self movieActive:NO];
                 if (allVideos.count == 0) {
                     loadingLabel.text = @"You do not have any videos on your phone";
                 }else{
@@ -350,6 +385,8 @@ static int screenWidth = 0, screenHeight = 0;
         [self submitButtonUp];
     else
         [self submitButtonDown];
+    
+    [self movieSetup];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {// sections in gallery
@@ -402,14 +439,11 @@ static int screenWidth = 0, screenHeight = 0;
     [galleryCollection reloadItemsAtIndexPaths:@[currentIndexPath]];
     [self submitButtonDown];
     [self movieActive:true];
-    [UIView animateWithDuration:0.5 animations:^(){
-        galleryCollection.alpha = 0.0;
-    } completion:^(BOOL finished){
-        [self movieSetup];
-    }];
+    
+    [self performSelector:@selector(play) withObject:nil afterDelay:0.8];
 }
 
--(UIImage*) addWaterMark : (UIImage*) backgroundImage {
+-(UIImage*) addWaterMark : (UIImage*) backgroundImage {                         // adds custom text watermark to image
     CGSize newSize = CGSizeMake(backgroundImage.size.width, backgroundImage.size.height);
     UIGraphicsBeginImageContext( newSize );
     
@@ -425,7 +459,7 @@ static int screenWidth = 0, screenHeight = 0;
     return finalImage;
 }
 
--(UIImage*) customWaterMarkImage : (CGSize) backroundFrame{
+-(UIImage*) customWaterMarkImage : (CGSize) backroundFrame{                     // creates watermark
     int viewHeight               = backroundFrame.height * 0.05;
     UILabel *waterText           = [[UILabel alloc] initWithFrame:CGRectMake(0, backroundFrame.height - viewHeight, backroundFrame.width, viewHeight)];
     waterText.textAlignment      = NSTextAlignmentCenter;

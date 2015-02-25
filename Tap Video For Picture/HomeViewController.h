@@ -10,12 +10,13 @@
 //
 //  Any commercial use of this software without the expressed written
 //  concent of Alex Jacobson is strictly forbidden
-
+//
+// contact: ajacobson50@gmial.com
 
 #import <UIKit/UIKit.h>
 
 @interface HomeViewController : UIViewController
-
+@property (strong, nonatomic) NSMutableArray *allVideos;
 
 @end
 

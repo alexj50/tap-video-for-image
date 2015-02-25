@@ -10,11 +10,14 @@
 //
 //  Any commercial use of this software without the expressed written
 //  concent of Alex Jacobson is strictly forbidden
+//
+// contact: ajacobson50@gmial.com
 
 #define FONT(s) [UIFont fontWithName:@"BrushHandNew" size:s]
 
 #import "GalleryCollectionView.h"
 #import "ReviewCollectionCell.h"
+#import "HomeViewController.h"
 
 @interface GalleryCollectionView ()<UICollectionViewDataSource,UICollectionViewDelegate,UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collection;
@@ -24,7 +27,7 @@
 
 @implementation GalleryCollectionView
 
-@synthesize imageArray,bigImage,homeButton,collection;
+@synthesize imageArray,bigImage,homeButton,collection,allVideos;
 
 static NSString *const reuseIdentifier = @"image";
 static int screenHeight = 0, screenWidth = 0;
@@ -32,7 +35,7 @@ static bool loadInstructions = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSUserDefaults *defults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defults = [NSUserDefaults standardUserDefaults];            // displays instructs for the first 2 times
     NSInteger count = [defults integerForKey:@"loadCount"];
     if (count < 2) {
         count++;
@@ -53,7 +56,7 @@ static bool loadInstructions = NO;
     bigImage.backgroundColor = [UIColor blackColor];
     [self.view addSubview:bigImage];
     
-    homeButton.titleLabel.font = FONT(26);
+    homeButton.titleLabel.font = FONT(26);                                      // sets home button font
     
     [self.collection reloadData];
 }
@@ -66,7 +69,7 @@ static bool loadInstructions = NO;
     [super didReceiveMemoryWarning];
 }
 
--(void)longPressHandler : (UILongPressGestureRecognizer*) gesture {
+-(void)longPressHandler : (UILongPressGestureRecognizer*) gesture {             // long press handler to animate image to full screen
     ReviewCollectionCell *cell = (ReviewCollectionCell *)gesture.view;
     CGRect cellFrame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y + collection.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
     cell.pressDiscription.alpha = 0;
@@ -88,6 +91,10 @@ static bool loadInstructions = NO;
     }
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {          // send video array to next view
+    HomeViewController *vc = [segue destinationViewController];
+    vc.allVideos           = allVideos;
+}
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -109,9 +116,9 @@ static bool loadInstructions = NO;
     [longpressGesture setDelegate:self];
     [cell addGestureRecognizer:longpressGesture];
     
-    cell.pressDiscription.font = FONT(20);
+    cell.pressDiscription.font = FONT(20);                                      // sets instructions font
     
-    if (loadInstructions) {
+    if (loadInstructions) {                                                     // animates the disappering instuctions after 2 seconds
         [UIView animateWithDuration:1.0 delay:2 options:UIViewAnimationOptionTransitionNone animations:^(){
             cell.pressDiscription.alpha = 0.0;
         }completion:^(BOOL finished){}];
@@ -122,7 +129,7 @@ static bool loadInstructions = NO;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{                                                                               // dynamically set cell sizes based on different aspect ratios
+{                                                                               // dynamically set cell sizes based on different image aspect ratios
     UIImage *image = [imageArray objectAtIndex:indexPath.row];
     
     float cellWidth;

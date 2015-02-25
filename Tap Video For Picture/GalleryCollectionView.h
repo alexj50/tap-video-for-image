@@ -10,11 +10,12 @@
 //
 //  Any commercial use of this software without the expressed written
 //  concent of Alex Jacobson is strictly forbidden
-
+//
+// contact: ajacobson50@gmial.com
 
 #import <UIKit/UIKit.h>
 
 @interface GalleryCollectionView : UIViewController
-
+@property (strong, nonatomic) NSMutableArray *allVideos;
 @property (strong,nonatomic) NSMutableArray *imageArray;
 @end

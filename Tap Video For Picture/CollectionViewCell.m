@@ -10,7 +10,8 @@
 //
 //  Any commercial use of this software without the expressed written
 //  concent of Alex Jacobson is strictly forbidden
-
+//
+// contact: ajacobson50@gmial.com
 
 #import "CollectionViewCell.h"
 

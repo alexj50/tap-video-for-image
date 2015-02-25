@@ -81,6 +81,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D92E0D011A9E5F4D00EA617B /* Photo Review */ = {
+			isa = PBXGroup;
+			children = (
+				D97FEFDD1A9D9E5C006A1801 /* GalleryCollectionView.h */,
+				D97FEFDE1A9D9E5C006A1801 /* GalleryCollectionView.m */,
+				D95A62FA1A9E29F5004567EE /* ReviewCollectionCell.h */,
+				D95A62FB1A9E29F5004567EE /* ReviewCollectionCell.m */,
+			);
+			name = "Photo Review";
+			sourceTree = "<group>";
+		};
+		D92E0D021A9E5F6500EA617B /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				D97FEFDF1A9D9E5C006A1801 /* CollectionViewCell.h */,
+				D97FEFE01A9D9E5C006A1801 /* CollectionViewCell.m */,
+				D97FEFE11A9D9E5C006A1801 /* HomeViewController.h */,
+				D97FEFE21A9D9E5C006A1801 /* HomeViewController.m */,
+			);
+			name = "Home Screen";
+			sourceTree = "<group>";
+		};
+		D92E0D031A9E5F7600EA617B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D92E0CFE1A9E4C2000EA617B /* CustomSegue.h */,
+				D92E0CFF1A9E4C2000EA617B /* CustomSegue.m */,
+				D97FEFE61A9D9E64006A1801 /* VideoClass.h */,
+				D97FEFE71A9D9E64006A1801 /* VideoClass.m */,
+				D97FEFB81A9D9E36006A1801 /* AppDelegate.h */,
+				D97FEFB91A9D9E36006A1801 /* AppDelegate.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		D97FEFA81A9D9E36006A1801 = {
 			isa = PBXGroup;
 			children = (
@@ -102,20 +137,9 @@
 		D97FEFB31A9D9E36006A1801 /* Tap Video For Picture */ = {
 			isa = PBXGroup;
 			children = (
-				D92E0CFE1A9E4C2000EA617B /* CustomSegue.h */,
-				D92E0CFF1A9E4C2000EA617B /* CustomSegue.m */,
-				D97FEFDD1A9D9E5C006A1801 /* GalleryCollectionView.h */,
-				D97FEFDE1A9D9E5C006A1801 /* GalleryCollectionView.m */,
-				D95A62FA1A9E29F5004567EE /* ReviewCollectionCell.h */,
-				D95A62FB1A9E29F5004567EE /* ReviewCollectionCell.m */,
-				D97FEFDF1A9D9E5C006A1801 /* CollectionViewCell.h */,
-				D97FEFE01A9D9E5C006A1801 /* CollectionViewCell.m */,
-				D97FEFE11A9D9E5C006A1801 /* HomeViewController.h */,
-				D97FEFE21A9D9E5C006A1801 /* HomeViewController.m */,
-				D97FEFE61A9D9E64006A1801 /* VideoClass.h */,
-				D97FEFE71A9D9E64006A1801 /* VideoClass.m */,
-				D97FEFB81A9D9E36006A1801 /* AppDelegate.h */,
-				D97FEFB91A9D9E36006A1801 /* AppDelegate.m */,
+				D92E0D031A9E5F7600EA617B /* Utilities */,
+				D92E0D021A9E5F6500EA617B /* Home Screen */,
+				D92E0D011A9E5F4D00EA617B /* Photo Review */,
 				D97FEFE91A9D9E88006A1801 /* Main.storyboard */,
 				D97FEFC41A9D9E36006A1801 /* Images.xcassets */,
 				D97FEFC61A9D9E36006A1801 /* LaunchScreen.xib */,
