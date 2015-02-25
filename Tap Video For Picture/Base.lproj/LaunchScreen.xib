@@ -19,20 +19,80 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap Video For Picture" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="20" y="140" width="441" height="43"/>
+                    <rect key="frame" x="20" y="50" width="441" height="43"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demo App Created by:" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="42x-hn-bA0">
+                    <rect key="frame" x="20" y="97" width="441" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="441" id="1hJ-Z1-vYG"/>
+                        <constraint firstAttribute="height" constant="43" id="MUx-GH-oYo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ajacobson50@gmail.com" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="AyR-oq-V5L">
+                    <rect key="frame" x="20" y="203" width="441" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="441" id="f10-N3-1jP"/>
+                        <constraint firstAttribute="height" constant="43" id="gf0-37-fRa"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="714-726-0095 " textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="SjR-xy-B2T">
+                    <rect key="frame" x="20" y="239" width="441" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="RPI-G5-p3S"/>
+                        <constraint firstAttribute="width" constant="441" id="n3h-Vb-r0I"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Development Time 14 hours" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="MSh-G6-N2L">
+                    <rect key="frame" x="20" y="275" width="441" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="441" id="Dhb-PV-xAZ"/>
+                        <constraint firstAttribute="height" constant="43" id="OCB-dk-ewz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alex Jacobson" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="Xb2-NB-KJc">
+                    <rect key="frame" x="20" y="132" width="441" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="OHr-MN-aVV"/>
+                        <constraint firstAttribute="width" constant="441" id="kxi-l0-aCK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="bottom" multiplier="1/3" constant="1" id="5cJ-9S-tgC"/>
+                <constraint firstItem="AyR-oq-V5L" firstAttribute="centerX" secondItem="SjR-xy-B2T" secondAttribute="centerX" id="1ez-A3-sMg"/>
+                <constraint firstItem="SjR-xy-B2T" firstAttribute="centerY" secondItem="MSh-G6-N2L" secondAttribute="centerY" constant="-36" id="1iR-gp-Iur"/>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="bottom" multiplier="1/3" constant="-88.5" id="5cJ-9S-tgC"/>
+                <constraint firstItem="42x-hn-bA0" firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="6vy-Ii-sDn"/>
+                <constraint firstItem="SjR-xy-B2T" firstAttribute="centerX" secondItem="MSh-G6-N2L" secondAttribute="centerX" id="I30-R5-qdc"/>
                 <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="Koa-jz-hwk"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
+                <constraint firstItem="42x-hn-bA0" firstAttribute="centerY" secondItem="kId-c2-rCX" secondAttribute="centerY" constant="47" id="Mf3-Qu-1lq"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
+                <constraint firstItem="Xb2-NB-KJc" firstAttribute="centerY" secondItem="AyR-oq-V5L" secondAttribute="centerY" constant="-71" id="PKR-UI-sYX"/>
                 <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
+                <constraint firstItem="AyR-oq-V5L" firstAttribute="centerY" secondItem="SjR-xy-B2T" secondAttribute="centerY" constant="-36" id="bJ3-cM-yse"/>
                 <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="fvb-Df-36g"/>
+                <constraint firstItem="Xb2-NB-KJc" firstAttribute="centerY" secondItem="42x-hn-bA0" secondAttribute="centerY" constant="35" id="kG4-QO-PrO"/>
+                <constraint firstItem="Xb2-NB-KJc" firstAttribute="centerX" secondItem="AyR-oq-V5L" secondAttribute="centerX" id="nCq-qt-Nc4"/>
+                <constraint firstItem="Xb2-NB-KJc" firstAttribute="centerX" secondItem="42x-hn-bA0" secondAttribute="centerX" id="v8f-t8-r4c"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
