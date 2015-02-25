@@ -32,6 +32,7 @@
 static NSString *const reuseIdentifier = @"image";
 static int screenHeight = 0, screenWidth = 0;
 static bool loadInstructions = NO;
+static float scrollDistance;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -69,9 +70,13 @@ static bool loadInstructions = NO;
     [super didReceiveMemoryWarning];
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    scrollDistance = (scrollView.contentOffset.y < 0) ? 0 : scrollView.contentOffset.y;
+}
+
 -(void)longPressHandler : (UILongPressGestureRecognizer*) gesture {             // long press handler to animate image to full screen
-    ReviewCollectionCell *cell = (ReviewCollectionCell *)gesture.view;
-    CGRect cellFrame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y + collection.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
+    ReviewCollectionCell *cell  = (ReviewCollectionCell *)gesture.view;
+    CGRect cellFrame            = CGRectMake(cell.frame.origin.x, (cell.frame.origin.y + collection.frame.origin.y) - scrollDistance, cell.frame.size.width, cell.frame.size.height);
     cell.pressDiscription.alpha = 0;
     if (gesture.state == UIGestureRecognizerStateEnded) {
         [UIView animateWithDuration:0.2 animations:^(){
