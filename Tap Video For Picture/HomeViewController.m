@@ -292,6 +292,15 @@ static int screenWidth = 0, screenHeight = 0,backgroundActive = 0;
     [alert show];
 }
 
++ (ALAssetsLibrary *)defaultAssetsLibrary {
+    static dispatch_once_t pred = 0;
+    static ALAssetsLibrary *library = nil;
+    dispatch_once(&pred, ^{
+        library = [[ALAssetsLibrary alloc] init];
+    });
+    return library;
+}
+
 - (void)retriveAllVideos{                                                       // ran on own async thread to collect all the videos
     HomeTitle.alpha = 0.0;
     if (allVideos == nil || allVideos.count == 0)
@@ -306,19 +315,20 @@ static int screenWidth = 0, screenHeight = 0,backgroundActive = 0;
     loadingLabel.hidden = NO;
     [activityIndcator startAnimating];
 
-    ALAssetsLibrary *assetLibrary = [ALAssetsLibrary new];
+    ALAssetsLibrary *assetLibrary = [HomeViewController defaultAssetsLibrary];
     
     [assetLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
         if (group) {
             [group setAssetsFilter:[ALAssetsFilter allVideos]];
-            [group enumerateAssetsUsingBlock:^(ALAsset *asset, NSUInteger index, BOOL *stop) {
+            [group enumerateAssetsWithOptions:NSEnumerationReverse usingBlock:^(ALAsset *asset, NSUInteger index, BOOL *stop) {
                 if (asset) {
                     ALAssetRepresentation *defaultRepresentation = [asset defaultRepresentation];
                     NSString *uti    = [defaultRepresentation UTI];
                     NSURL *urlTemp   = [[asset valueForProperty:ALAssetPropertyURLs] valueForKey:uti];
                     VideoClass *temp = [VideoClass new];                        // set video object
+                    temp.asset       = asset;
                     temp.url         = urlTemp;
-                    temp.imageData   = [self keyFrame:urlTemp];                 // get first frame
+//                    temp.imageData   = [self keyFrame:urlTemp];                 // get first frame
                     [allVideos addObject:temp];
                 }
             }];
@@ -339,24 +349,24 @@ static int screenWidth = 0, screenHeight = 0,backgroundActive = 0;
     }];
 }
 
-- (NSData *) keyFrame : (NSURL*) currentUrl{                                    // grabs first frame to display in video picker
-    AVAsset *asset = [[AVURLAsset alloc] initWithURL:currentUrl options:nil];;
-    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
-    imageGenerator.appliesPreferredTrackTransform = YES;
-    CMTime midpoint = CMTimeMake(0, 600);
-    NSError *error = nil;
-    CMTime actualTime;
-    CGImageRef firstFrame = [imageGenerator copyCGImageAtTime:midpoint actualTime:&actualTime error:&error];
-    
-    UIImage *image;
-    NSData *binaryImageData;
-    if (firstFrame != NULL) {
-        image = [[UIImage alloc] initWithCGImage:firstFrame];
-        binaryImageData = UIImageJPEGRepresentation(image, 0.2f);
-        CGImageRelease(firstFrame);
-    }
-    return binaryImageData;
-}
+//- (NSData *) keyFrame : (NSURL*) currentUrl{                                    // grabs first frame to display in video picker
+//    AVAsset *asset = [[AVURLAsset alloc] initWithURL:currentUrl options:nil];;
+//    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+//    imageGenerator.appliesPreferredTrackTransform = YES;
+//    CMTime midpoint = CMTimeMake(0, 600);
+//    NSError *error = nil;
+//    CMTime actualTime;
+//    CGImageRef firstFrame = [imageGenerator copyCGImageAtTime:midpoint actualTime:&actualTime error:&error];
+//    
+//    UIImage *image;
+//    NSData *binaryImageData;
+//    if (firstFrame != NULL) {
+//        image = [[UIImage alloc] initWithCGImage:firstFrame];
+//        binaryImageData = UIImageJPEGRepresentation(image, 0.2f);
+//        CGImageRelease(firstFrame);
+//    }
+//    return binaryImageData;
+//}
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -402,7 +412,7 @@ static int screenWidth = 0, screenHeight = 0,backgroundActive = 0;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath { //assembles the collection cell
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     VideoClass *vid          = [allVideos objectAtIndex:indexPath.row];
-    cell.cellImage.image     = [UIImage imageWithData:vid.imageData];
+    cell.cellImage.image     =  [UIImage imageWithCGImage:vid.asset.thumbnail];
     
     if(vid.selected)
         cell.selectedView.alpha = 0.5;

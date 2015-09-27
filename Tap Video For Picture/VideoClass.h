@@ -14,9 +14,11 @@
 // contact: ajacobson50@gmial.com
 
 #import <Foundation/Foundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface VideoClass : NSObject
 @property NSURL *url;
 @property NSData *imageData;
 @property BOOL selected;
+@property ALAsset *asset;
 @end
