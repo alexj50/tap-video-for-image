@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0716367F-2B55-493B-A705-C4EF313825F7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Tap Video For Picture</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>867D20A15FD9F449A8ADAE5417D170DDD787047E</key>
+		<string>github.com:alexj50/tap-video-for-image.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Tap Video For Picture.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>867D20A15FD9F449A8ADAE5417D170DDD787047E</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:alexj50/tap-video-for-image.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>867D20A15FD9F449A8ADAE5417D170DDD787047E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>867D20A15FD9F449A8ADAE5417D170DDD787047E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Tap%20Video%20For%20Picture</string>
+		</dict>
+	</array>
+</dict>
+</plist>
